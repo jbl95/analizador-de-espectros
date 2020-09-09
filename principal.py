@@ -39,17 +39,21 @@ modulo,fase = fxEsp.mi_analizador(xx+xx2,fs,N)
 # modulo = npy.abs(fft)
 # fase = npy.angle(fft)
 
-tt = npy.arange(N/fs, step=1/fs)
-
 plt.figure(1)
 plt.subplot(121)
-ploteo1 = plt.plot(fs*tt[:N // 2],modulo[:N // 2])
+ploteo1 = plt.plot(fs*tt[:N // 2],modulo[:N // 2],label='seno')
 plt.title('Modulo')
 plt.xlabel('Frecuencia(Hz)')
 plt.ylabel('Amplitud')
 plt.grid()
+plt.legend(handles=ploteo1, loc='best')
 plt.subplot(122)
-ploteo1 = plt.plot(fs*tt[:N // 2],fase[:N // 2])
+
+
+# p = fase
+# p[modulo < 1] = 0
+
+ploteo1 = plt.plot(fs*tt[:N // 2],fase[:N // 2]*180/npy.pi)
 plt.title('Fase')
 plt.xlabel('Frecuencia (Hz)')
 plt.ylabel('Fase')
